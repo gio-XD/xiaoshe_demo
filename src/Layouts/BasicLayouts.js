@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {Link} from 'dva/router'
+import {connect} from 'dva'
 import data from './data'
 import styles from  './BasicLayouts.css'
 
@@ -20,7 +21,7 @@ class BasicLayout extends Component{
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={['main']}
                         style={{ lineHeight: '48px',float:'left' }}
                     >
                         {this.renderMenu()}
@@ -47,4 +48,8 @@ class BasicLayout extends Component{
     }
 }
 
-export default BasicLayout
+export default connect((state) => {
+    return {
+        currentRouter:state.global.currentRouter
+    }
+})(BasicLayout) 
