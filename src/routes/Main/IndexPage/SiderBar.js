@@ -3,8 +3,7 @@ import Logo from '../../../components/Logo'
 import { Checkbox, Row, Col, Button, Select, message, Modal } from 'antd';
 import checkData from '../../../configs/main/checkData'
 import Year from '../../../configs/main/yearMatch'
-
-import globalStyles from '../../style.css'
+import SiderBarContainer from '../../../Layouts/SiderBar'
 import style from './IndexPage.css'
 
 
@@ -30,14 +29,13 @@ export default class SiderBar extends Component {
 
   renderVersionSelector = () => {
     const {location} = this.props
-    
     return (
       <div style= {{fontSize:'12px',height:'32px',display:'flex'}}>
-          <span>版本切换：</span>
+          <span style = {{lineHeight:'32px'}}>版本切换：</span>
           <Select 
             // size="large" 
-            defaultValue={location.pathname.split("/")[1]=="0"?"2016":Year[location.hash.split("/")[1]]} 
-            style={{ width: 65,height:32 }} 
+            defaultValue={location.pathname.split("/")[2]==="0"?"2016":Year[location.pathname.split("/")[2]]} 
+            style={{ width: 72,height:32 }} 
             onSelect={e=>{console.log(123);
             }}>
             <Select.Option value='1'>2016</Select.Option>
@@ -45,7 +43,9 @@ export default class SiderBar extends Component {
           </Select>
           {/*<Button size="large" onClick={this.showModal}>版本管理</Button>*/}
           <Button 
-            onClick={e=>this.clickhref(e)}>数据对比</Button>
+            onClick={e=>this.clickhref(e)}
+
+            >数据对比</Button>
           {/* <Modal title="基础数据对照" visible={this.state.visible}
             onOk={this.handleOk} onCancel={this.handleCancel} width="70%"
           >
@@ -62,13 +62,10 @@ export default class SiderBar extends Component {
 
   render() {
     return (
-      <div className={globalStyles.siderBar}>
-        <div className={globalStyles.siderHeader}><Logo /></div>
-        <div className={globalStyles.contentBody}>
+        <SiderBarContainer>
           {this.renderVersionSelector()}
           {this.renderSider()}
-        </div>
-      </div>
+        </SiderBarContainer>
     )
   }
 }

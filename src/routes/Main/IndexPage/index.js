@@ -1,5 +1,6 @@
 import React, { Component,Fragment } from 'react'
 import Sider from './SiderBar'
+import Content from './Content'
 
 export default class IndexPage extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class IndexPage extends Component {
     return (
       <Fragment>
         <Sider {...this.props}/>
-        {this.props.match.params.year}
+        <Content/>
       </Fragment>
     )
   }

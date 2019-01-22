@@ -5,7 +5,7 @@ import Logo from '../../components/Logo'
 import { Link } from 'dva/router'
 import { connect } from 'dva'
 import siderData from '../../configs/indexSider'
-// import addLogo from '../../Layouts/SiderBar'
+import SiderBarContainer from '../../Layouts/SiderBar'
 import styles from './style.css'
 
 
@@ -48,12 +48,9 @@ export default class SiderBar extends Component {
   }
   render() {
     return (
-      <div className={globalStyles.siderBar}>
-        <div className={globalStyles.siderHeader}><Logo /></div>
-        <div className={globalStyles.contentBody}>
+        <SiderBarContainer>
           {this.renderSider()}
-        </div>
-      </div>
+        </SiderBarContainer>
     )
   }
 }
