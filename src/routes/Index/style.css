@@ -1,0 +1,25 @@
+.siderBar{
+    float: left;
+    width: 200px;
+    height: 100%;
+}
+
+.content{
+    float: left;
+    width: calc( 100% - 200px);
+    height: 100%;
+    padding: 16px
+}
+
+.indexRow{
+    width: 210px;
+    margin-top: 30px;
+    color: #fff;
+  }
+  .indexNum{
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .indexText{
+    font-size: 14px;
+  }

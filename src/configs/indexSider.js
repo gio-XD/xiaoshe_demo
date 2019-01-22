@@ -1,0 +1,26 @@
+module.exports = [
+    {
+        name:'学校总数',
+        url:'/main/:0',
+        background:'#9BC53E',
+        icon:'/img/school.png'
+    },
+    {
+        name:'前期项目数量',
+        url:'/schoolBefore',
+        background:'#5ABFEB',
+        icon:'/img/build.png'
+    },
+    {
+        name:'修缮申请总数',
+        url:'/apply',
+        background:'#cccc00',
+        icon:'/img/rate.png'
+    },
+    {
+        name:'修缮计划征询稿',
+        url:'/project',
+        background:'#E55A34',
+        icon:'/img/done.png'
+    },
+]
