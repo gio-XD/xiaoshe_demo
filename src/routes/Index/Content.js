@@ -4,16 +4,20 @@ import { connect } from 'dva'
 import Handleheader from '../../Layouts/Content'
 
 const picture = '/img/school.jpg'
+let map
 
 @connect(({ data }) => ({
     mapData: data.mapData || []
 }))
-
 @Handleheader
 export default class Content extends Component {
 
     componentWillMount() {
         // if(this.props.mapData.length > 0 ) return
+
+    }
+
+    componentDidMount() {
         let postData = {
             params: '{}',
             method: 'query_data',
@@ -28,10 +32,7 @@ export default class Content extends Component {
                 postData
             }
         })
-    }
-
-    componentDidMount() {
-        const map = new window.BMap.Map("allmap") // 创建Map实例
+        map = new window.BMap.Map("allmap") // 创建Map实例        
         const navigationControl = new window.BMap.NavigationControl({  // 设置定位
             // 靠左上角位置
             anchor: 'BMAP_ANCHOR_TOP_LEFT',
@@ -61,8 +62,13 @@ export default class Content extends Component {
         this.renderMap(map)
     }
 
-    renderMap = (map) => {
-        const { mapData } = this.props
+    componentWillReceiveProps(next){
+        if(next.mapData !== this.props.mapData)
+        this.renderMap(map,next.mapData)
+    }
+
+    renderMap = (map,data) => {
+        const mapData  = data || this.props.mapData
             , myGeo = new window.BMap.Geocoder()
 
         let markers = []
@@ -118,8 +124,6 @@ export default class Content extends Component {
     }
 
     render() {
-        console.log(this.props.mapData);
-
         return (
                 <React.Fragment>
                     <div style={{ width: (document.body.clientWidth - 250), height: (document.body.clientHeight - 48 - 88),margin: '-24px -10px' }} id="allmap"></div>

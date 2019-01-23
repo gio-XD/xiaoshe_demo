@@ -29,6 +29,8 @@ export default {
         response = yield Odoo.odoofuntion(payload.reqPath,postData)
       }
 
+        
+
       yield put({
         type:'save',
         payload:{
@@ -36,12 +38,24 @@ export default {
         }
       })  
     },
+
+    *filterData({payload},{call,put,select}){ 
+      let checkFilter = yield select( ({data}) => data.checkFilter)
+      , tableData = yield select(({data}) => data.tableData)
+      if(!checkFilter) checkFilter = {}
+
+      checkFilter = {
+        ...checkFilter,
+        ...payload.checkFilter
+      }
+      console.log(checkFilter,tableData);
+    }
   },
 
   reducers: {
     save(state, { type, payload }) {
-      console.log(payload)
-
+      console.log(payload);
+      
       return { ...state, ...payload }
     },
   },
